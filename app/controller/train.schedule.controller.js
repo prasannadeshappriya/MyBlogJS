@@ -11,8 +11,8 @@ app.controller('TrainScheduleController',[
             let trainScheduleList = await loadTrainStations();
             $scope.trainStationList = trainScheduleList;
             $scope.$apply();
-            $scope.from_station = trainScheduleList[0].station_name;
-            $scope.to_station = trainScheduleList[0].station_name;
+            $scope.from_station = trainScheduleList[51].station_name;
+            $scope.to_station = trainScheduleList[51].station_name;
             //Initialize date and time
             let current_date = new Date();
             $scope.schedule_date = current_date.getDate() + "/" +
