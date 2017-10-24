@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prasanna Deshappriya</title>
+    <!--CSS Files-->
+    <link rel="stylesheet" href="vendors/css/bootstrap.min.css">
+    <link rel="stylesheet" href="vendors/css/angular-material.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--Javascript Files-->
+    <script src="vendors/js/jquery-3.2.1.min.js"></script>
+    <script src="vendors/js/bootstrap.min.js"></script>
+    <script src="vendors/js/angular.min.js"></script>
+    <script src="vendors/js/angular-route.js"></script>
+    <script src="vendors/js/angular-ui-router.min.js"></script>
+    <script src="vendors/js/ngStorage.min.js"></script>
+    <script src="vendors/js/angular-aria.min.js"></script>
+    <script src="vendors/js/angular-animate.min.js"></script>
+    <script src="vendors/js/angular-material.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.1/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+    <!--AngularJS files-->
+    <script src="app/app.modules.js"></script>
+    <script src="app/app.config.js"></script>
+    <script src="app/app.run.js"></script>
+    <!--AngularJS Services-->
+    <script src="app/services/page.refresh.service.js"></script>
+    <!--AngularJS Controllers-->
+    <script src="app/controller/main.controller.js"></script>
+    <script src="app/controller/train.schedule.controller.js"></script>
+    <!--BaseURL for AngularJS Routes-->
+    <base href="/MyBlogJs/">
+</head>
+<body ng-app="MyBlog" ng-controller="MainController">
+    <div class="container">
+        <div ng-view></div>
+    </div>
+</body>
+</html>
