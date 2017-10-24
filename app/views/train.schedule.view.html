@@ -67,7 +67,7 @@
         </div>
     </div>
     <div>
-        <img src="app/assets/img/loading.svg" style="height:100px" class="col-xs-12 text-center" ng-show="!isLoading">
+        <img src="app/assets/img/loading.svg" style="height:100px" class="col-xs-12 text-center" ng-show="isLoading">
         <div ng-show="!isLoading" ng-if="results.length>0">
             <p class="text-info">{{banner}}<br>
                 [{{train_count}}] Train(s) available, {{status}} results</p>
