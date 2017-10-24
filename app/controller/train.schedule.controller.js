@@ -6,8 +6,8 @@ app.controller('TrainScheduleController',[
     function($scope, $http, host_url){
 
         // Initialize variables
-        init();
-        async function init(){
+
+        $scope.onInit = async function(){
             let trainScheduleList = await loadTrainStations();
             $scope.trainStationList = trainScheduleList;
             $scope.$apply();
@@ -20,7 +20,12 @@ app.controller('TrainScheduleController',[
             $scope.schedule_from_time = "00:00";
             $scope.schedule_to_time = "23:59";
             $scope.isLoading = false;
-        }
+            //Update the user statistics
+            let response = await $http({
+                method: 'POST',
+                url: host_url + 'users/update_statistics_trainwebapp'
+            });
+        };
 
         $scope.search = async function () {
             $scope.isLoading = true;
