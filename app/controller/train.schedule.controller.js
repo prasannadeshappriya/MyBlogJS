@@ -7,6 +7,39 @@ app.controller('TrainScheduleController',[
 
         // Initialize variables
 
+        $scope.test = {
+            'End Station_6': "05:47:00",
+            'End Time_6': "COLOMBO FORT",
+            'Name_6': "06:30:00",
+            'Start Time_6': "05:46:00",
+            'Train No_6': "More",
+            'Your Station_7': "KAPUWATTE"
+        };
+
+        $scope.testfunc = function () {
+            let arrival = '';
+            let departure = '';
+            let destination = '';
+            let destination_time = '';
+            Object.keys($scope.test)
+                .forEach(function (key) {
+                    if(key.includes('End Station')){
+                        departure = $scope.test[key];
+                    }else if(key.includes('End Time')){
+                        destination = $scope.test[key];
+                    }else if(key.includes('Name')){
+                        destination_time = $scope.test[key];
+                    }else if(key.includes('Start Time')){
+                        arrival =  $scope.test[key];
+                    }
+                });
+            let tmpObjCon = {
+                arrival: arrival,
+                depature: departure,
+                des_time: destination + ' ' + destination_time
+            }
+        };
+
         $scope.onInit = async function(){
             let trainScheduleList = await loadTrainStations();
             $scope.trainStationList = trainScheduleList;
@@ -43,10 +76,41 @@ app.controller('TrainScheduleController',[
                 });
                 $scope.isLoading = false;
                 if (response) {
-                    $scope.results = response.data.data;
-                    $scope.banner = "Search results from " + $scope.from_station + " to " + $scope.to_station + " on " + $scope.schedule_date + " between " +
+                    let con_results = response.data.data.connected;
+                    $scope.connected_results = [];
+                    for(let i=0; i<con_results.length; i++){
+                        let con_result_item = con_results[i];
+                        let arrival = '';
+                        let departure = '';
+                        let destination = '';
+                        let destination_time = '';
+                        Object.keys(con_result_item)
+                            .forEach(function (key) {
+                                if(key.includes('End Station')){
+                                    departure = con_result_item[key];
+                                }else if(key.includes('End Time')){
+                                    destination = con_result_item[key];
+                                }else if(key.includes('Name')){
+                                    destination_time = con_result_item[key];
+                                }else if(key.includes('Start Time')){
+                                    arrival =  con_result_item[key];
+                                }
+                            });
+                        $scope.connected_results.push({
+                            arrival: arrival,
+                            depature: departure,
+                            des_time: destination + ' ' + destination_time
+                        });
+                    }
+                    console.log('-------------');
+                    console.log($scope.connected_results);
+                    console.log('-------------');
+                    $scope.normal_results = response.data.data.normal;
+                    $scope.banner = "Search results from " + $scope.from_station + " to "
+                        + $scope.to_station + " on " + $scope.schedule_date + " between " +
                             $scope.schedule_from_time + " Hrs and " + $scope.schedule_to_time + " Hrs";
-                    $scope.train_count = response.data.data.length;
+                    $scope.train_count = (response.data.data.normal.length +
+                                            response.data.data.connected.length);
                     if(response.data.online){$scope.status = 'Online'}
                     else{$scope.status = 'Offline'}
                     $scope.$apply();
