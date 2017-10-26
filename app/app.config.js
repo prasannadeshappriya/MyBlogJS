@@ -4,12 +4,20 @@
 app.config(['$routeProvider', function($routeProvider){
     $routeProvider
         .when("/train_schedule",{
-            //Login page
             templateUrl: "app/views/train.schedule.view.html",
             controller: 'TrainScheduleController',
             resolve:{
                 init: function () {
                     console.log('Navigate to train schedule view');
+                }
+            }
+        })
+        .when("/dev/train_schedule",{
+            templateUrl: "app/views/dev.train.schedule.view.html",
+            controller: 'DevController',
+            resolve:{
+                init: function () {
+                    console.log('Navigate to train schedule dev view');
                 }
             }
         })

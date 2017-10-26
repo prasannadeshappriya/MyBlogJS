@@ -1,0 +1,52 @@
+<div ng-controller="DevController" ng-init="onInit()" style="margin-top: 15px">
+    <img src="app/assets/img/loading.svg" style="height:100px" class="col-xs-12 text-center" ng-show="isLoading">
+
+    <div class="col-xs-12">
+        <input type="button" value="Get Offline Storage Details [JSON]" class="btn btn-success" ng-click="syncOfflineStorage('json')">
+        <input type="button" value="Get Offline Storage Details [STRING]" class="btn btn-success" ng-click="syncOfflineStorage('string')">
+    </div>
+
+    <div class="col-xs-12" ng-show="!isLoading" ng-if="offlie_storage.length>0" style="margin-top: 15px">
+        <div class="col-xs-4">
+            <div ng-repeat="item in offlie_storage">
+                <a href="" ng-click="itemClick(item)">"{{item.start_station_id}}" to "{{item.end_station_id}}" at {{days[item.week_date_id]}}</a>
+            </div>
+        </div>
+        <div class="col-xs-8">
+            <h5 class="text-info">id: {{id}}</h5>
+            <h5 class="text-info">start_station_id: {{start_station_id}}</h5>
+            <h5 class="text-info">end_station_id: {{end_station_id}}</h5>
+            <h5 class="text-info">week_date_id: {{week_date_id}}</h5>
+            <h5 class="text-info">createdAt: {{createdAt}}</h5>
+            <h5 class="text-info">updatedAt: {{updatedAt}}</h5>
+            <pre ng-if="type==='json'">
+                {{result_string | json}}
+            </pre>
+            <pre style="white-space:pre-line;" ng-if="type!=='json'">
+                {{result_string | json}}
+            </pre>
+        </div>
+    </div>
+
+    <div ng-show="!isLoading">
+        <div class="col-xs-12">
+            <div ng-repeat="item in train_station" class="col-xs-3">
+                <table class="table table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="details in item" class="success">
+                        <td><span style="color: red"><b>{{details["station_id"]}}</b></span></td>
+                        <td>{{details["station_name"]}}</td>
+                    </tr >
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>

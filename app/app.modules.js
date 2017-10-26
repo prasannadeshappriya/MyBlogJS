@@ -4,7 +4,7 @@
 const app = angular.module('MyBlog',
     ['ui.router', 'ngStorage', 'ngRoute', 'ngAnimate','ngAria','ngMaterial'])
     .constant(
-        'host_url', 'http://localhost:3002/'
-        // 'host_url', 'https://trainscheduleserver.herokuapp.com/'
+        // 'host_url', 'http://localhost:3002/'
+        'host_url', 'https://trainscheduleserver.herokuapp.com/'
     );
 
