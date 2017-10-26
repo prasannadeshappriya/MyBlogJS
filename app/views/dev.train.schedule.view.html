@@ -1,11 +1,12 @@
 <div ng-controller="DevController" ng-init="onInit()" style="margin-top: 15px">
-    <img src="app/assets/img/loading.svg" style="height:100px" class="col-xs-12 text-center" ng-show="isLoading">
-
+    <div class="col-xs-12">
+        <h4><b>Train Schedule/ Website usage count: {{usage}}</b></h4>
+    </div>
     <div class="col-xs-12">
         <input type="button" value="Get Offline Storage Details [JSON]" class="btn btn-success" ng-click="syncOfflineStorage('json')">
         <input type="button" value="Get Offline Storage Details [STRING]" class="btn btn-success" ng-click="syncOfflineStorage('string')">
     </div>
-
+    <img src="app/assets/img/loading.svg" style="height:20px; margin-top: 20px" class="col-xs-12 text-center" ng-show="isLoading">
     <div class="col-xs-12" ng-show="!isLoading" ng-if="offlie_storage.length>0" style="margin-top: 15px">
         <div class="col-xs-4">
             <div ng-repeat="item in offlie_storage">

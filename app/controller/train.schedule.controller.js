@@ -26,6 +26,10 @@ app.controller('TrainScheduleController',[
                 xhrFields: {withCredentials: false},
                 url: host_url + 'users/update_statistics_trainwebapp'
             });
+            if(response){
+                if(response.data.update){console.log('Statistics Updated');}
+                else{console.log('Error while updating statistics')}
+            }
         };
 
         $scope.search = async function () {

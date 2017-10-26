@@ -7,6 +7,7 @@ app.controller('DevController',[
         $scope.train_station = {};
         $scope.isLoading = false;
         $scope.type = '';
+        $scope.usage = 0;
 
         $scope.days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
         Array.prototype.chunk = function ( n ) {
@@ -70,11 +71,19 @@ app.controller('DevController',[
                     for(let i=0; i<tmpArr.length; i++){
                         $scope.train_station[i] = tmpArr[i];
                     }
-                    console.log($scope.train_station);
+                }
+                response = await $http({
+                    crossDomain: true,
+                    xhrFields: {withCredentials: false},
+                    method: 'GET',
+                    url: host_url + 'users/trainwebapp_statistics',
+                    params: {}
+                });
+                if(response){
+                    $scope.usage = response.data.count;
                 }
                 $scope.isLoading = false;
                 $scope.$apply();
-                console.log(response);
             }catch (err){
                 $scope.isLoading = false;
                 $scope.$apply();
