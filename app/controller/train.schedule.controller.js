@@ -22,6 +22,8 @@ app.controller('TrainScheduleController',[
             //Update the user statistics
             let response = await $http({
                 method: 'POST',
+                crossDomain: true,
+                xhrFields: {withCredentials: false},
                 url: host_url + 'users/update_statistics_trainwebapp'
             });
         };
@@ -31,6 +33,8 @@ app.controller('TrainScheduleController',[
             try {
                 let response = await $http({
                     method: 'GET',
+                    crossDomain: true,
+                    xhrFields: {withCredentials: false},
                     url: host_url + 'users/schedule',
                     params: {
                         start_station: $scope.from_station,
