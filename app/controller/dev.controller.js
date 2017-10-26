@@ -55,6 +55,8 @@ app.controller('DevController',[
             $scope.isLoading = true;
             try {
                 let response = await $http({
+                    crossDomain: true,
+                    xhrFields: {withCredentials: false},
                     method: 'GET',
                     url: host_url + 'dev/trainStations',
                     params: {}
