@@ -33,6 +33,8 @@ app.controller('DevController',[
                 $scope.isLoading = true;
                 let response = await $http({
                     method: 'GET',
+                    crossDomain: true,
+                    xhrFields: {withCredentials: false},
                     url: host_url + 'dev/trainScheduleOfflineStorage',
                     params: {}
                 });
